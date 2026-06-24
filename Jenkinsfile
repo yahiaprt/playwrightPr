@@ -1,55 +1,43 @@
-pipline {
+pipeline {
     agent {
         docker {
             image 'mcr.microsoft.com/playwright:v1.59.1-noble'
             args '-u root --entrypoint='
         }
+    }
 
-        paramatres {
-        booleanParam(name: 'default_execution_for_all', defaultValue: false, description: 'Run all collections/envs')
-        booleanParam(name: 'chose_nav', defaultValue: false, description: 'Run all collections/envs')
-                booleanParam(name: 'chose_Tag_option', defaultValue: false, description: 'Run all collections/envs')
+    parameters {
+        booleanParam(name: 'chose_nav', defaultValue: false, description: 'Choose specific browser')
+        booleanParam(name: 'chose_Tag_option', defaultValue: false, description: 'Run with @TNR tag')
 
-        choice(name: 'nav', choices: ['chromium', 'firefox', 'webkit'], description: 'Pick nav')
+        choice(name: 'nav', choices: ['chromium', 'firefox', 'webkit'], description: 'Pick browser')
+    }
 
-        }
-
-        stages {
-               stage ('test play '){
-               steps {
-                  sh 'npm install'
-               }
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
             }
-
-            stage ('test play '){
-               steps {
-                 script {
-                          if(chose_nav === true) {
- 
-                                    sh 'npx playwright test --project = ' ${choice.nav}
-                    
-        }  else {
-                        sh 'npx playwright test'
-
         }
 
-        if(chose_Tag_option === true && chose_nav === true ){
-            sh 'npx playwright --grep "@TNR" --project=' ${nav}
-        } else {
-            sh 'npx playwright --grep "@TNR" '
-        }
-            
-        
-
-
-                 }
-
-
-               }
-
-
+        stage('Run Playwright Tests') {
+            steps {
+                script {
+                    if (params.chose_nav) {
+                        if (params.chose_Tag_option) {
+                            sh "npx playwright test --grep '@TNR' --project=${params.nav}"
+                        } else {
+                            sh "npx playwright test --project=${params.nav}"
+                        }
+                    } else {
+                        if (params.chose_Tag_option) {
+                            sh "npx playwright test --grep '@TNR'"
+                        } else {
+                            sh 'npx playwright test'
+                        }
+                    }
+                }
             }
-
         }
     }
 }
