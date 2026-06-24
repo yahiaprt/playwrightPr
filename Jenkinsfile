@@ -11,6 +11,8 @@ pipeline {
         booleanParam(name: 'chose_Tag_option', defaultValue: false, description: 'Run with @TNR tag')
 
         choice(name: 'nav', choices: ['chromium', 'firefox', 'webkit'], description: 'Pick browser')
+        choice(name: 'tagList', choices: ['@TNR', '@smoke'], description: 'Pick tag')
+
     }
 
     stages {
@@ -25,13 +27,13 @@ pipeline {
                 script {
                     if (params.chose_nav) {
                         if (params.chose_Tag_option) {
-                            sh "npx playwright test --grep '@TNR' --project=${params.nav}"
+                            sh "npx playwright test --grep" +  ${params.tagList}  + "--project=" + ${params.nav}
                         } else {
                             sh "npx playwright test --project=${params.nav}"
                         }
                     } else {
                         if (params.chose_Tag_option) {
-                            sh "npx playwright test --grep '@TNR'"
+                            sh "npx playwright test --grep" +  ${params.tagList}
                         } else {
                             sh 'npx playwright test'
                         }
