@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","4709","US-05 : Création d'un devis","firefox","2026-06-25","passed","2026-06-25","","devis.spec.ts","",""
+"","4422","US-03 : Modification du profil entreprise","firefox","2026-06-25","passed","2026-06-25","","profil.spec.ts","",""
+"","3435","US-02 : Connexion","firefox","2026-06-25","passed","2026-06-25","","login.spec.ts","",""
