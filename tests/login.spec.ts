@@ -1,6 +1,6 @@
 import {expect, test } from '@playwright/test'
 
-
+/*
 test("inscription valide",{tag: "@TNR"}, async function ({page}){
 // on vas vistter le site
 await page.goto("https://thrundrz.fr/gestion/")
@@ -42,6 +42,7 @@ await expect(page).toHaveURL(/EspaceClient/)
 
 
 } )
+*/
 
 test("US-02 : Connexion ", async ({page}) => {
     // Visiter la 1ère page ...

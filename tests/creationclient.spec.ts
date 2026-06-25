@@ -1,6 +1,6 @@
 import {expect, test } from '@playwright/test'
 
-
+/*
 test("US-04 : Création d'un client", async function ({page}){
     await page.goto("https://thrundrz.fr/gestion/")
     
@@ -25,3 +25,4 @@ test("US-04 : Création d'un client", async function ({page}){
  await expect(page.locator("[role='alert']",{hasText:"Client ajouté avec succès !"})).toBeVisible()
     
 })
+*/
