@@ -11,7 +11,7 @@ pipeline{
         stage('global stage'){
             agent{
                 docker{
-                    image 'mcr.microsoft.com/playwright:v1.59.1-noble'
+                    image 'mcr.microsoft.com/playwright:v1.61.0-noble'
                     args '-u root --entrypoint='
                 }
             }
